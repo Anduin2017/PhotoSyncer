@@ -93,6 +93,8 @@ namespace Syncer
         static void Main(string[] args)
         {
             GetValues();
+            Console.WriteLine("Indexing...");
+            int indexed = 0;
             var files = Directory.GetFiles(source).Where(t => t.EndsWith("png") || t.EndsWith("jpg") || t.EndsWith("bmp") || t.EndsWith("jpeg"));
             foreach (var file in files)
             {
@@ -134,8 +136,12 @@ namespace Syncer
                 {
                     Console.WriteLine(e.Message);
                 }
+                indexed++;
+                Console.WriteLine("Indexing..." + indexed * 100 / files.Count());
             }
 
+            Console.WriteLine("Copying...");
+            int copied = 0, total = DataMemory.Count();
             var famousTags = TagsAppearance
                 .Where(t => !string.IsNullOrWhiteSpace(t.Tag))
                 .OrderByDescending(t => t.Times)
@@ -147,11 +153,15 @@ namespace Syncer
                 foreach (var toCopy in filesWithTag)
                 {
                     Copy(famousTag, toCopy, filesWithTag.Count);
+                    copied++;
+                    Console.WriteLine("Copying..." + copied * 100 / total);
                 }
             }
             foreach (var tocopy in DataMemory.ToList())
             {
                 Copy("zz_no_tag", tocopy, int.MaxValue);
+                copied++;
+                Console.WriteLine("Copying..." + copied * 100 / total);
             }
             var videos = Directory.GetFiles(source)
                 .Where(t => t.EndsWith("mp4"))
@@ -164,6 +174,7 @@ namespace Syncer
             {
                 Copy("video", video, int.MaxValue);
             }
+            Console.WriteLine("Done.");
             Console.ReadLine();
         }
     }
