@@ -105,6 +105,7 @@ namespace Syncer
                     var tagsString = Encoding.UTF8.GetString(tagsByte, 0, tagsByte.Length);
                     var tagsCollection = tagsString
                         .Split('#')
+                        .Skip(1)
                         .Select(t => t.Replace("\0", "").Trim().ToLower())
                         .Where(t => !string.IsNullOrWhiteSpace(t))
                         .ToArray();
