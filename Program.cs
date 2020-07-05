@@ -61,7 +61,12 @@ namespace Syncer
             }
             if (File.Exists(toCopy.Path))
             {
-                File.Copy(toCopy.Path, Path.Combine(targetTagFolder, toCopy.FileName), true);
+                var targetAddress = Path.Combine(targetTagFolder, toCopy.FileName);
+                if (!File.Exists(targetAddress))
+                {
+                    Console.Write(targetAddress);
+                    File.Copy(toCopy.Path, targetAddress, false);
+                }
             }
             DataMemory.Remove(toCopy);
         }
