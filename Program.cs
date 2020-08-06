@@ -1,12 +1,10 @@
-﻿using System;
+﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
+using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats;
 
 namespace Syncer
 {
@@ -77,7 +75,7 @@ namespace Syncer
             source = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(source))
             {
-                source = @"C:\Users\andui\Storgram\4K Stogram\anduin2017";
+                source = @"C:\Users\xuef\4K Stogram";
             }
             if (!Directory.Exists(source))
             {
@@ -87,7 +85,7 @@ namespace Syncer
             target = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(target))
             {
-                target = @"C:\Users\andui\OneDrive\Pictures\Digital\Pretty";
+                target = @"C:\Users\xuef\OneDrive - Microsoft\Pictures\Digital\Pretty";
             }
             if (!Directory.Exists(target))
             {
