@@ -75,7 +75,7 @@ namespace Syncer
             source = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(source))
             {
-                source = @"C:\Users\xuef\4K Stogram";
+                source = @"C:\Users\xuef\4K Stogram\anduin2017";
             }
             if (!Directory.Exists(source))
             {
