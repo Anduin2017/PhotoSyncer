@@ -85,7 +85,7 @@ namespace Syncer
             target = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(target))
             {
-                target = @"C:\Users\xuef\OneDrive - Microsoft\Pictures\Digital\Pretty";
+                target = @"C:\Users\xuef\OneDrive - Microsoft\Digital\Pretty";
             }
             if (!Directory.Exists(target))
             {
